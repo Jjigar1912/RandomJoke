@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Joke</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Sora:wght@500&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 100vh;
+        background-color: #27292b;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: sora;
+      }
+      .main {
+        display: flex;
+        gap: 40px;
+        flex-direction: column;
+        align-items: center;
+      }
+      button {
+        background-color: #f5e365;
+        border: none;
+        outline: none;
+        padding: 20px 60px;
+        font-weight: 500;
+        font-size: 20px;
+      }
+      #title {
+        color: white;
+        max-width: 500px;
+        width: 100%;
+        margin: auto;
+        padding: 5px;
+        text-align: center;
+      }
+      #ans {
+        padding: 5px;
+        color: white;
+        max-width: 500px;
+        width: 100%;
+        margin: auto;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <button onclick="getData()" id="btn">GET JOKE</button>
+      <h3 id="title"></h3>
+      <h3 id="ans"></h3>
+    </div>
+    <script>
+      const getData = () => {
+        fetch("https://official-joke-api.appspot.com/random_joke")
+          .then((response) => {
+            return response.json();
+          })
+          .then((res) => {
+            document.getElementById("title").innerHTML = res.setup;
+            document.getElementById("ans").innerHTML = res.punchline;
+          });
+      };
+    </script>
+  </body>
+</html>
